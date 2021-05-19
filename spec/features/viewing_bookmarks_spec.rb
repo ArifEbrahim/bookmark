@@ -2,8 +2,6 @@
 # So that I can quickly go to web sites I regularly visit
 # I would like to see a list of bookmarks
 
-require 'pg'
-
 feature 'viewing bookmarks' do
   scenario 'user can see saved bookmarks' do
     Bookmark.create('http://www.makersacademy.com', 'Makers Academy')
@@ -12,8 +10,8 @@ feature 'viewing bookmarks' do
 
     visit('/')
     click_button('View')
-    expect(page).to have_content('Google')
-    expect(page).to have_content('Makers Academy')
-    expect(page).to have_content('Amazon')
+    expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')
+    expect(page).to have_link('Amazon', href: 'http://www.amazon.com')
+    expect(page).to have_link('Google', href: 'http://www.google.com')
   end
 end
