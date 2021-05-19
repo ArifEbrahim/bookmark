@@ -7,7 +7,8 @@ feature 'create bookmark' do
     visit('/')
     click_button('New Bookmark')
     fill_in('url', with: 'http://www.medium.com')
+    fill_in('title', with: 'Medium')
     click_button('Submit')
-    expect(page).to have_content('http://www.medium.com')
+    expect(page).to have_link("Medium", href: "http://www.medium.com")
   end
 end
