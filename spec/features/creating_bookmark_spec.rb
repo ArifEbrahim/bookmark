@@ -4,8 +4,7 @@
 
 feature 'create bookmark' do
   scenario 'user can create a bookmark' do
-    visit('/')
-    click_button('New Bookmark')
+    visit('/bookmarks/new')
     fill_in('url', with: 'http://www.medium.com')
     fill_in('title', with: 'Medium')
     click_button('Submit')

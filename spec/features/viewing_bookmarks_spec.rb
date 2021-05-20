@@ -8,8 +8,7 @@ feature 'viewing bookmarks' do
     Bookmark.create('http://www.amazon.com', 'Amazon')
     Bookmark.create('http://www.google.com', 'Google')
 
-    visit('/')
-    click_button('View')
+    visit('/bookmarks')
     expect(page).to have_link('Makers Academy', href: 'http://www.makersacademy.com')
     expect(page).to have_link('Amazon', href: 'http://www.amazon.com')
     expect(page).to have_link('Google', href: 'http://www.google.com')

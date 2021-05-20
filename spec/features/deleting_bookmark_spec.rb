@@ -5,8 +5,7 @@
 feature 'delete bookmark' do
   scenario 'user can delete bookmark' do
     Bookmark.create('http://www.bbc.co.uk', 'BBC')
-    visit('/')
-    click_button('View')
+    visit('/bookmarks')
     expect(page).to have_link("BBC", href: "http://www.bbc.co.uk")
 
     first('.bookmark').click_button 'Delete'
