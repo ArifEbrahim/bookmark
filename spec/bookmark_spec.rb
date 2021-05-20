@@ -39,5 +39,30 @@ RSpec.describe Bookmark do
     end
   end
 
+  describe '.update' do
+    it 'can update a bookmark' do
+      bookmark = Bookmark.create('http://www.bbc.co.uk', 'BBC')
+      updated_bookmark = Bookmark.update('http://www.cnbc.com', 'CNBC', bookmark.id)
+
+      expect(updated_bookmark).to be_a Bookmark
+      expect(updated_bookmark.id).to eq(bookmark.id)
+      expect(updated_bookmark.title).to eq('CNBC')
+      expect(updated_bookmark.url).to eq('http://www.cnbc.com')
+    end
+  end
+
+  describe '.find' do
+    it 'can find a specific bookmark' do
+      bookmark = Bookmark.create('http://www.bbc.co.uk', 'BBC')
+      search_result = Bookmark.find(bookmark.id)
+
+      expect(search_result).to be_a Bookmark
+      expect(search_result.id).to eq(bookmark.id)
+      expect(search_result.title).to eq('BBC')
+      expect(search_result.url).to eq('http://www.bbc.co.uk')
+
+    end
+  end
+
 
 end
