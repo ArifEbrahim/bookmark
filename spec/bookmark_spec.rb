@@ -29,6 +29,12 @@ RSpec.describe Bookmark do
       expect(bookmark.title).to eq('Medium')
       expect(bookmark.url).to eq('http://www.medium.com')
     end
+
+    it 'does not create a bookmark if url is invalid' do
+      Bookmark.create('rubbish','rubbish')
+      expect(Bookmark.all).to be_empty
+    end
+
   end
 
   describe '.delete' do
@@ -63,6 +69,8 @@ RSpec.describe Bookmark do
 
     end
   end
+
+
 
 
 end
