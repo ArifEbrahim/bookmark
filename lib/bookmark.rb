@@ -1,4 +1,5 @@
 require './lib/database_connection.rb'
+require './lib/comment.rb'
 
 class Bookmark
 
@@ -31,6 +32,10 @@ class Bookmark
   def self.find(id)
     result = DatabaseConnection.query("SELECT * FROM bookmarks WHERE id = #{id};")
     Bookmark.new(result[0]['id'], result[0]['title'], result[0]['url'])
+  end
+
+  def comments(comment_class = Comment)
+    comment_class.where(@id)
   end
 
   private

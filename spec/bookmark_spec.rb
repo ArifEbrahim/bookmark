@@ -1,6 +1,7 @@
 require 'bookmark'
 
 RSpec.describe Bookmark do
+  let(:comment_class) { double(:comment_class) }
   describe '.all' do
     it 'returns all saved bookmarks' do
       con = PG.connect(dbname: 'bookmark_manager_test')
@@ -22,7 +23,7 @@ RSpec.describe Bookmark do
   describe '.create ' do
     it 'can store a bookmark in the database' do
       bookmark = Bookmark.create('http://www.medium.com','Medium')
-      persisted_data = persisted_data(bookmark.id)
+      persisted_data = persisted_data('bookmarks',bookmark.id)
 
       expect(bookmark).to be_a Bookmark
       expect(bookmark.id).to eq persisted_data['id']
@@ -70,7 +71,15 @@ RSpec.describe Bookmark do
     end
   end
 
+  describe '#comments' do
+    it 'calls .where on the Comment class' do
+      bookmark = Bookmark.create('http://www.bbc.co.uk', 'BBC')
+      expect(comment_class).to receive(:where).with(bookmark.id)
 
+      bookmark.comments(comment_class)
+    end
+  end
 
+  
 
 end

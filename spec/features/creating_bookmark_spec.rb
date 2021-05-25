@@ -19,6 +19,6 @@ feature 'create bookmark' do
     fill_in('title', with: 'Medium')
     click_button('Submit')
     expect(page).not_to have_content('rubbish')
-    expect(page).to have_content('You must submit a valid url')
+    expect(page).to have_content('Please submit a valid url')
   end
 end
