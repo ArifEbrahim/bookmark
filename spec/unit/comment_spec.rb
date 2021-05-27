@@ -2,7 +2,7 @@ require './spec/database_helpers.rb'
 require 'comment'
 require 'bookmark'
 
-describe Comment do
+RSpec.describe Comment do
   describe '.create' do
     it 'creates a new comment' do
       bookmark = Bookmark.create('http://www.bbc.co.uk', 'BBC')
